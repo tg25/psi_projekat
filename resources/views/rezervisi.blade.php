@@ -1,6 +1,10 @@
 @extends("layoutStandard")
 
-@section("rezervisi")
+
+
+@section("content")
+
+
 
 <h1>USPEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEH </h1>
 

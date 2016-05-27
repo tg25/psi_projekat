@@ -17,6 +17,12 @@ Route::get('/', function () {
 
 Route::resource("korisnik", "KorisnikController");
 
+Route::resource("vesti", "VestiController");
+
+Route::resource("pozorista", "PozoristeController");
+
+Route::resource("predstave", "PredstavaController");
+
 Route::get('proba', function () {
     return view('layoutStandard');
 });
