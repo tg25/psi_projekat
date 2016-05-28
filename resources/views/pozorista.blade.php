@@ -21,13 +21,13 @@
         </div>
         <!-- /.row -->
 
-        
+
         @foreach($pozorista as $p)
 
-                    
+
                         <div class="col-md-4 img-portfolio">
                             <a href="portfolio-item.html">
-                                <img class="img-responsive img-hover" src="{{$p->Slika}}" alt="">
+                                  <a href="/pozorista/{{$p->IDPoz}}"><img class="img-responsive img-hover" src="{{$p->Slika}}" alt=""></a>
                             </a>
                             <h3>
                                 <a href="/pozorista/{{$p->IDPoz}}">{{$p->Naziv}}</a>
@@ -72,4 +72,3 @@
         <hr>
 
 @stop
-     

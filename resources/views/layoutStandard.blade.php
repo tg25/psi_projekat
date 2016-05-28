@@ -26,7 +26,7 @@
 }
 
 .windowModal > div {
-    
+
     width: 400px;
     position: relative;
     margin: 10% auto;
@@ -69,10 +69,10 @@
     color: #ffffff;
     font-size: 0.8em;
     text-transform: uppercase;
-    
+
     border-radius: 2px;
-    
-    
+
+
 
 }
 
@@ -82,7 +82,7 @@
 .forma input[type="submit"]:hover, .forma input[type="button"]:hover {
     background: #9e9e9e;
     border: 1px solid #9e9e9e;
-    
+
 
 }
 
@@ -158,7 +158,7 @@ function OpenRegistracija() {
                         <a class="page-scroll" href="/vesti/">Vesti</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="">Predstave</a>
+                        <a class="page-scroll" href="/predstave">Predstave</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="/pozorista">Pozorišta</a>
@@ -169,15 +169,27 @@ function OpenRegistracija() {
                     <li>
                         <a class="page-scroll" href="#contact">O nama</a>
                     </li>
-                    <li>
-                        <a href="#divModal" >Log in</a>
-                    </li>
-                   
-                </ul>
-                
-                
+                    @if (Auth::guest())
+                      <!--  <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/register') }}">Register</a></li> -->
+                        <li><a href="#divModal">Login</a></li>
+                        <li><a href="#divModalRegister">Register</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
 
-                
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                </ul>
+
+
+
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -188,48 +200,137 @@ function OpenRegistracija() {
                     <div>
                         <a href="#close" title="Close" class="close">X</a>
                         <h2 align="left">Log in</h2>
-                        <form class="forma">
-                            Email</br>
-                            <input class="form-control" type="textbox" size="40" ></br>
-                            Vaša šifra</br>
-                            <input class="form-control" type="password" size="40" ></br></br>
-                            <input type="checkbox" name="zapamtime" value="">Zapamti me</br>
-                            Nemate nalog? Napravite ga <b><i><font color="white"><a href="#divModalRegister">ovde</a></font></i></b></br></br>
-                            <a href="#close"><input align="right" type="button" value="Zatvori"></input></a>
-                            <input align="right" type="submit" value="Log in"></input>
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                            {{ csrf_field() }}
+
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                                <div class="col-md-6">
+                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <label for="password" class="col-md-4 control-label">Password</label>
+
+                                <div class="col-md-6">
+                                    <input id="password" type="password" class="form-control" name="password">
+
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remember"> Remember Me
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-btn fa-sign-in"></i> Login
+                                    </button>
+
+                                    <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
-                
+
                 <div id="divModalRegister" class="windowModal">
                     <div>
                         <a href="#close" title="Close" class="close">X</a>
                         <h2 align="left">Log in</h2>
-                        <form class="forma">
-                            Vaše ime</br>
-                            <input class="form-control" type="textbox" size="40"></br>
-                            Vaše prezime</br>
-                            <input class="form-control" type="textbox" size="40"></br>
-                            Vaš kontakt telefon</br>
-                            <input class="form-control" type="textbox" size="40"></br>
-                            Email</br>
-                            <input class="form-control" type="textbox" size="40"></br>
-                            Vaša šifra</br>
-                            <input class="form-control" type="textbox" size="40"></br>
-                            Potvrdite vašu šifru</br>
-                            <input class="form-control" type="textbox" size="40"></br>
-                            
-                            <input type="checkbox" name="zapamtime" value="">Zapamti me</input></br>
-                            
-                            <a href="#close"><input align="right" type="button" value="Zatvori"></input></a>
-                            <input align="right" type="submit" value="Log in"></input>
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                            {{ csrf_field() }}
+
+                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                <label for="name" class="col-md-4 control-label">Name</label>
+
+                                <div class="col-md-6">
+                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+
+                                    @if ($errors->has('name'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                                <div class="col-md-6">
+                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <label for="password" class="col-md-4 control-label">Password</label>
+
+                                <div class="col-md-6">
+                                    <input id="password" type="password" class="form-control" name="password">
+
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                                <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+
+                                <div class="col-md-6">
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+
+                                    @if ($errors->has('password_confirmation'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-btn fa-user"></i> Register
+                                    </button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
-    
-    
+
+
     <!-- Intro Header -->
-    
+
     <div class="container">
         @yield('content')
    </div>

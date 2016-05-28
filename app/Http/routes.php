@@ -26,3 +26,22 @@ Route::resource("predstave", "PredstavaController");
 Route::get('proba', function () {
     return view('layoutStandard');
 });
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
