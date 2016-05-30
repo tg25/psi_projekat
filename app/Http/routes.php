@@ -11,37 +11,35 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware'=> ['web']], function(){
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+  
+    Route::get('admin', ['middleware' => 'admin', function () {
+
+        return view('admin');
+
+    }]);
+
+    Route::auth();
+
+    Route::get('/welcome', 'HomeController@index');
+
+
+
+    Route::resource("korisnik", "KorisnikController");
+
+    Route::resource("vesti", "VestiController");
+
+    Route::resource("pozorista", "PozoristeController");
+
+    Route::resource("predstave", "PredstavaController");
+
+    Route::get('proba', function () {
+        return view('layoutStandard');
+    });
+
 });
-
-Route::resource("korisnik", "KorisnikController");
-
-Route::resource("vesti", "VestiController");
-
-Route::resource("pozorista", "PozoristeController");
-
-Route::resource("predstave", "PredstavaController");
-
-Route::get('proba', function () {
-    return view('layoutStandard');
-});
-Route::auth();
-
-Route::get('/home', 'HomeController@index');
-
-Route::auth();
-
-Route::get('/home', 'HomeController@index');
-
-Route::auth();
-
-Route::get('/home', 'HomeController@index');
-
-Route::auth();
-
-Route::get('/home', 'HomeController@index');
-
-Route::auth();
-
-Route::get('/home', 'HomeController@index');

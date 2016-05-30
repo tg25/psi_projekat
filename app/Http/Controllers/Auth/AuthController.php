@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+
 use App\User;
 use App\RegistrovaniKorisnik;
 use Validator;
@@ -22,6 +23,8 @@ class AuthController extends Controller
     |
     */
 
+
+
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
@@ -39,7 +42,11 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+
+        
+
     }
+
 
     /**
      * Get a validator for an incoming registration request.
