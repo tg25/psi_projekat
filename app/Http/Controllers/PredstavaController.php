@@ -6,10 +6,65 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use App\Predstava;
+use App\Pozoriste;
 
 
 class PredstavaController extends Controller
+
+
+
+
 {
+
+    public function pretraga($q)
+
+    {
+
+
+         $predstave=Predstava::all();
+        
+        $pozorista=Pozoriste::all();
+
+
+             
+             
+            
+            $predstave = DB::table('predstava')
+                    ->join('pozoriste', 'predstava.IDPre', '=', 'pozoriste.IDPoz')
+                    ->select('predstava.*')
+                    ->where('pozoriste.Naziv', $q)
+                    ->get();
+            
+          
+
+             if ($predstave!=null) {
+             
+
+            
+            
+            foreach ($predstave as $p ) {
+                    echo '<div class="input-group"><span class="input-group-addon">
+                                <input type="checkbox" aria-label="...">
+                          </span>
+                          <input width="190px" type="text" class="form-control" value="';
+                             echo $p->Naziv;
+                          echo '" aria-label="...">';
+                        
+                            
+
+                        echo "</input></div></br>";
+            }       
+            }
+
+            else echo"<br><br>Nema predstava za trazeno pozoriste";
+
+
+        
+    }
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -17,12 +72,13 @@ class PredstavaController extends Controller
      */
     public function index()
     {
-        $predstave=Predstava::all();
+       $predstave=Predstava::all();
         
         
+        $pozorista=Pozoriste::all();
 
 
-        return view("predstave")->with('predstave', $predstave);
+        return view("predstave")->with('predstave', $predstave)->with('pozorista', $pozorista);
     }
 
     /**

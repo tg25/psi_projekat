@@ -11,9 +11,29 @@
 |
 */
 
+
+
+
+Route::group(['middleware' => ['web']], function () {
+    //
+    Route::get('predstave/pretraga/{q}', 'PredstavaController@pretraga');
+});
+
+
+
+
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+ Route::get('predstave/pretraga/{q}', 'PredstavaController@pretraga');
+
+
+
 
 Route::resource("korisnik", "KorisnikController");
 

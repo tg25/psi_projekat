@@ -21,7 +21,101 @@
                 </ol>
             </div>
         </div>
+
+
+       
+
+
+        <form class="form-signin"  method="GET" action="{{ url('/auth/login') }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="well">
+                    
+
+
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group" >
+                        <label float="right" >Predstava</label>
+                        <input width="150px" type="text" class="form-control">
+                        
+
+                        </br></br>
+
+
+                         
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-lg-6">
+                     <div class="input-group">
+                         <label float="right" >Izaberi pozoriste:</label>
+                         <select width="150px" class="form-control" onchange="showUser(this.value)">
+                            @foreach($pozorista as $poz)
+                                 <option>{{$poz->Naziv}}</option>
+                            @endforeach
+                            
+                            
+
+                         </select>
+                        <div id="txtHint"><b>Person info will be listed here...</b></div>
+
+            
+
+
+                     </div>
+
+                </div>
+                    <!-- /.input-group -->
+            </div>
+            
+
+
+
+             <div class="row">
+
+             <span class="input-group-btn">
+                            <button width="150px" class="btn btn-default" type="button">Prikazi</button>
+            </span>
+             </div>
+
+
+
+            </div>
+
+
+         </form>
+
+
+
+
+        
+
+
+
+
+
         <!-- /.row -->
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
         @foreach($predstave as $p)
 
         <?php 
@@ -41,7 +135,7 @@
                 <h3>{{$p->Naziv}}</h3>
                 <p>{{$poz->Naziv}}</p>
                 <p>{{$p->Detaljnije}}</p>
-                <a class="btn btn-primary" href="/vesti/{{$p->IDVes}}">Detaljnije</i></a>
+                <a class="btn btn-default" href="/vesti/{{$p->IDPre}}">Detaljnije</i></a>
             </div>
         </div>
         <!-- /.row -->
@@ -49,6 +143,7 @@
         <hr>
 
         @endforeach
+
        
 
         <!-- Pagination -->
