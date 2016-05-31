@@ -105,7 +105,7 @@ function OpenRegistracija() {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Grayscale - Start Bootstrap Theme</title>
+    <title>Epoz - @yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -258,7 +258,8 @@ function OpenRegistracija() {
                     <div>
                         <a href="#close" title="Close" class="close">X</a>
                         <h2 align="left">Log in</h2>
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+
+                       <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

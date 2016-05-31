@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-
 use App\User;
 use App\RegistrovaniKorisnik;
 use Validator;
@@ -32,6 +31,7 @@ class AuthController extends Controller
      *
      * @var string
      */
+
     protected $redirectTo = '/';
 
     /**
@@ -43,10 +43,16 @@ class AuthController extends Controller
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
 
-        
+
 
     }
-
+    protected function authenticated($request, $user)
+{
+    if($user->getTip()==2) {
+        return redirect()->intended('/admin');
+    }
+    return redirect()->intended('/welcome');
+}
 
     /**
      * Get a validator for an incoming registration request.

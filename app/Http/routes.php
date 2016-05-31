@@ -17,7 +17,9 @@ Route::group(['middleware'=> ['web']], function(){
         return view('welcome');
     });
 
-  
+    Route::get('login', 'AuthController@getLogin');
+    Route::post('login', 'AuthController@postLogin');
+
     Route::get('admin', ['middleware' => 'admin', function () {
 
         return view('admin');
@@ -42,4 +44,5 @@ Route::group(['middleware'=> ['web']], function(){
         return view('layoutStandard');
     });
 
+    Route::resource('adminpoz', 'PozoristeController');
 });
