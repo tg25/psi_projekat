@@ -2,6 +2,6 @@
 
 @section('content')
 
-<h2>{{$pozoriste}}</h2>
+<h2>{{$naziv}}</h2>
 
 @stop

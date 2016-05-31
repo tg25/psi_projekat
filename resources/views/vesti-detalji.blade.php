@@ -35,30 +35,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
             </div>
         </div>
-       
-        <?php
-        echo Form::model($vest, array('route' => array('vesti.store', $vest->IDVes)));
-        echo Form::label('IDVes', 'ID Vesti'); //mora da se podudara sa nayivom kolone u bazi!!!
-
-        echo Form::text('IDVes', null, array('class'=>"form-control"));
-
-        echo Form::submit('Naziv'); //salje na link koji smo dali formi
-
-
-         Form::close();
-        ?>
-
-        <?php
-        Form::open(array('url' => 'vesti.store'));
-            echo Form::label('IDVes', 'E-Mail Address'); 
-        Form::close();
-
-        ?>
-
-
 </div>
-
-
 
 
 @stop

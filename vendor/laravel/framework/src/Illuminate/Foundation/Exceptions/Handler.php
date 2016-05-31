@@ -127,7 +127,9 @@ class Handler implements ExceptionHandlerContract
     {
         $response = new Response($response->getContent(), $response->getStatusCode(), $response->headers->all());
 
-        return $response->withException($e);
+        $response->exception = $e;
+
+        return $response;
     }
 
     /**

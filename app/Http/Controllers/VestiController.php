@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Vest;
-use Session;
+
 
 class VestiController extends Controller
 {
@@ -53,19 +53,6 @@ class VestiController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request, array(
-            'IDVes'=> 'required|max:2'
-
-            ));
-
-        $vest= new Vest;
-         $vest->IDVes=$request->IDVes;
-
-         $vest->save();
-
-         Session::flash('uspeh','tekst poruke');
-
-         return redirect()->route('vesti.show', $vest->IDVes);
     }
 
     /**
@@ -79,7 +66,6 @@ class VestiController extends Controller
          $vest=Vest::find($id);
 
          return view("vesti-detalji")->with('vest', $vest);
-
     }
 
     /**
