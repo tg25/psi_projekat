@@ -11,38 +11,50 @@
 |
 */
 
-Route::group(['middleware'=> ['web']], function(){
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
 
-    Route::get('login', 'AuthController@getLogin');
-    Route::post('login', 'AuthController@postLogin');
+
+Route::group(['middleware' => ['web']], function () {
+    //
+    Route::get('predstave/pretraga/{q}', 'PredstavaController@pretraga');
 
     Route::get('admin', ['middleware' => 'admin', function () {
 
-        return view('admin');
+           return view('admin');
 
-    }]);
+       }]);
 
-    Route::auth();
+       Route::auth();
 
-    Route::get('/welcome', 'HomeController@index');
+       Route::get('/welcome', 'HomeController@index');
 
 
 
-    Route::resource("korisnik", "KorisnikController");
+Route::get('/', function () {
+    return view('welcome');
+});
 
-    Route::resource("vesti", "VestiController");
+ Route::get('predstave/pretraga/{q}', 'PredstavaController@pretraga');
 
-    Route::resource("pozorista", "PozoristeController");
+Route::get('predstave/svePred/', 'PredstavaController@svePred');
 
-    Route::resource("predstave", "PredstavaController");
 
-    Route::get('proba', function () {
-        return view('layoutStandard');
-    });
+Route::resource("korisnik", "KorisnikController");
 
-    Route::resource('adminpoz', 'PozoristeController');
+Route::resource("vesti", "VestiController");
+
+Route::resource("pozorista", "PozoristeController");
+
+Route::resource("predstave", "PredstavaController");
+
+Route::get('proba', function () {
+    return view('layoutStandard');
+});
+
+//Rute za admina AKCIJA
+
+Route::get('/predstave/destroy/{id}','PredstavaController@destroy');
+Route::get('/predstave/formaZaUnos/{p}','PredstavaController@formaZaUnos');
+Route::post('/predstave/create/','PredstavaController@create');
+
 });

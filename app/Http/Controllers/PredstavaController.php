@@ -12,10 +12,46 @@ use Illuminate\Support\Facades\Input;
 
 class PredstavaController extends Controller
 {
-    
+
+    public function formaZaUnos($b=8){
+
+      echo '<form class="form-control"  method="POST" action='.url('/predstave/create').'>
+            <input type="hidden" name="_token" value='.csrf_token().'>
+            <label>Naziv:</label><input type="text" name="naziv" ></br>
+            <label>Pozoriste:</label><input type="text" name="pozoriste" value=""></br>
+            <label>Detaljnije:</label><input type="text" name="detaljnije" value=""></br>
+            <label>Slika:</label><input type="text" name="slika" value=""></br>
+            <button width="150px" class="btn btn-default" type="submit">Unesi</button>';
+    }
+
+      public function svePred(){
+        $predstave=Predstava::all();
+        echo'<table class="table">
+            <tr>
+              <td><strong>Predstava</strong></td>
+              <td><strong>Pozoriste</strong></td>
+              <td colspan="3" align="center"><strong>Akcija</strong></td>
+            </tr>
+        ';
+        foreach ($predstave as $p ) {
+
+            $poz = DB::table('pozoriste')->where('IDPoz', $p->IDPoz)->first();
+
+            echo '<tr>
+            <td>'.$p->Naziv.'</td>
+            <td>'.$poz->Naziv.'</td>
+            <td><a href="/predstave/update/'.$p->IDPre.'">Izmeni</a></td>
+            <td><a href="" onClick="return dodaj()">Dodaj</a></td>
+            <td><a href="/predstave/destroy/'.$p->IDPre.'">Obrisi</a></td>
+          </tr>';
+
+        }
+        echo'</table>';
+      }
+
 
     public function prikazi(Request $request){
- 
+
         $Naziv=$request->Naziv;
         $NazivPoz=$request->NazivPoz;
         //$izbor=$request->checkBox;
@@ -26,27 +62,7 @@ class PredstavaController extends Controller
         echo $Naziv;
 
         return view("proba")->with("naziv", $izbor);
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
      public function pretraga($q)
 
@@ -54,13 +70,13 @@ class PredstavaController extends Controller
 
 
          $predstave=Predstava::all();
-        
+
         $pozorista=Pozoriste::all();
 
 
-             
-             
-            
+
+
+
             $predstave = DB::table('predstava')
                     ->join('pozoriste', 'predstava.IDPoz', '=', 'pozoriste.IDPoz')
                     ->select('predstava.*')
@@ -69,14 +85,14 @@ class PredstavaController extends Controller
 
 
             //echo $predstave;
-            
-          
+
+
 
              if ($predstave!=null) {
-             
 
-            
-            
+
+
+
             /*foreach ($predstave as $p ) {
 
                     echo '<div class="input-group"><span class="input-group-addon">
@@ -85,8 +101,8 @@ class PredstavaController extends Controller
                           <input width="190px" type="text" class="form-control" value="';
                              echo $p->Naziv;
                           echo '" aria-label="...">';
-                        
-                            
+
+
 
                         echo "</input></div></br>";
             }  */
@@ -112,7 +128,7 @@ class PredstavaController extends Controller
                 <a class="btn btn-primary" href="/vesti/'.$p->IDPre.'">Detaljnije</i></a>
             </div>
         </div>
-        
+
 
         <hr>';
 
@@ -122,21 +138,8 @@ class PredstavaController extends Controller
             }
 
             else echo"<br><br>Nema predstava za trazeno pozoriste";
-
-
-        
     }
-
-
-
-
-
-
-
-
-
-
-    /**
+       /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -144,7 +147,7 @@ class PredstavaController extends Controller
     public function index()
     {
         $predstave=Predstava::all();
-        
+
         $pozorista=Pozoriste::all();
 
 
@@ -156,9 +159,24 @@ class PredstavaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+          $naziv=$request->naziv;
+          $pozoriste=$request->pozoriste;
+          $detaljnije=$request->detaljnije;
+          $slika=$request->slika;
+
+          $poz = DB::table('pozoriste')->where('Naziv', $pozoriste)->first();
+          $idpoz=$poz->IDPoz;
+
+          $predstava = new Predstava;
+
+          $predstava->Naziv = $naziv;
+          $predstava->Detaljnije = $detaljnije;
+          $predstava->Slika = $slika;
+          $predstava->IDPoz = $idpoz;
+
+          $predstava->save();
     }
 
     /**
@@ -215,6 +233,7 @@ class PredstavaController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-}
+      DB::table('predstava')->where('IDPre', '=', $id)->delete();
+      return redirect()->intended('/admin');
+
+    }}

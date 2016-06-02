@@ -5,11 +5,7 @@
  @section('content')
  <script language="javascript">
 
-	function izmeni(s){
-		document.getElementById("sub").innerHTML=s;
-		document.getElementById("tabela").value=s;
-		return false;
-	}
+
 </script>
  <div class="container">
 
@@ -35,10 +31,10 @@
              <div class="col-md-3">
                  <div class="list-group">
 
-                     <a href="/adminpoz" class="list-group-item" onclick="return izmeni('Pozorišta');">Pozorišta</a>
-                     <a href="/adminpred" class="list-group-item" onclick="return izmeni('Predstave');">Predstave</a>
-                     <a href="/admingl" class="list-group-item" onclick="return izmeni('Glumci');">Glumci</a>
-                     <a href="/adminrep" class="list-group-item" onclick="return izmeni('Repertoar');">Repertoar</a>
+                     <a href="" class="list-group-item" onclick="return izmeni('Pozorišta');">Pozorišta</a>
+                     <a href="" class="list-group-item" onclick="return izmeni('Predstave');">Predstave</a>
+                     <a href="" class="list-group-item" onclick="return izmeni('Glumci');">Glumci</a>
+                     <a href="" class="list-group-item" onclick="return izmeni('Repertoar');">Repertoar</a>
 
                  </div>
 
@@ -59,11 +55,11 @@
          </div>
              </div>
 
-
+               <?php $predstave=""; ?>
              <!-- Content Column -->
 
-             <div class="col-md-9">
-                 @yield('admincontent')
+             <div class="col-md-9" id="txtHint">
+              
              </div>
          </div>
          <!-- /.row -->
