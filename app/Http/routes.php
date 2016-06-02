@@ -17,11 +17,10 @@ Route::get('/predstave/complete/{q}', 'PredstavaController@complete');
 Route::group(['middleware' => ['web']], function () {
     //
     Route::get('predstave/pretraga/{q}', 'PredstavaController@pretraga');
-<<<<<<< HEAD
+
     Route::get('/predstave/complete/{q}', 'PredstavaController@complete');
 });
-=======
->>>>>>> origin/master
+
 
     Route::get('admin', ['middleware' => 'admin', function () {
 
@@ -41,13 +40,13 @@ Route::get('/', function () {
 
  Route::get('predstave/pretraga/{q}', 'PredstavaController@pretraga');
 
-<<<<<<< HEAD
+
 
 Route::resource("glumci", "GlumciController");
-=======
+
 Route::get('predstave/svePred/', 'PredstavaController@svePred');
 
->>>>>>> origin/master
+
 
 Route::resource("korisnik", "KorisnikController");
 
@@ -67,4 +66,3 @@ Route::get('/predstave/destroy/{id}','PredstavaController@destroy');
 Route::get('/predstave/formaZaUnos/{p}','PredstavaController@formaZaUnos');
 Route::post('/predstave/create/','PredstavaController@create');
 
-});

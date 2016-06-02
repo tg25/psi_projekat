@@ -67,7 +67,7 @@ class PredstavaController extends Controller
         echo $Naziv;
 
         return view("proba")->with("naziv", $izbor);
-<<<<<<< HEAD
+
 
 }
 
@@ -128,10 +128,9 @@ class PredstavaController extends Controller
 
 
 
-=======
-    }
 
->>>>>>> origin/master
+    
+
      public function pretraga($q)
 
     {
