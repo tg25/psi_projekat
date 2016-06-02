@@ -6,15 +6,7 @@
 <head>
 
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
-<script type="text/javascript">
 
-$.ajaxSetup({
- headers:{ 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-
-
-} );
-
-</script>
 
 
 
@@ -110,11 +102,7 @@ z-index: 99999;
 </style>
 
 
-<script>
-function OpenRegistracija() {
-    window.open("http://www.w3schools.com", "_blank", "menubar=no", "toolbar=no,scrollbars=no,resizable=no,top=500,left=500,width=400,height=400");
-}
-</script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -14,6 +14,11 @@ class PredstavaController extends Controller
 {
     
 
+
+
+
+
+
     public function prikazi(Request $request){
  
         $Naziv=$request->Naziv;
@@ -27,23 +32,61 @@ class PredstavaController extends Controller
 
         return view("proba")->with("naziv", $izbor);
 
+}
 
 
 
 
 
+
+
+
+
+    public function complete($q){
+        //return view("proba")->with("naziv", $q);
+        $query=DB::table('predstava')->select('predstava.Naziv')->get();
+        $niz;
+        $k=0;
+        foreach($query as $que){
+
+
+            $niz[$k]=(String)$que->Naziv;
+            $k=$k+1;
+        }
+
+        
+        $k=0;
+        if (strlen($q) > 0)
+        {
+            $hint;
+            for($i=0; $i<count($niz); $i++)
+            {
+                if (strtolower($q)==strtolower(substr($niz[$i],0,strlen($q))))
+                {
+                    $hint[$k]=$niz[$i];
+                    $k=$k+1;
+                    
+                    
+                }
+            }
+
+
+
+        
+                foreach ($hint as $h) {
+                    echo '<a style="font-size:13pt;" onclick="return zamenitekst(';
+                    echo "'".$h."'";
+                    echo ')">'.$h.'</a></br>';
+                }
+                
+  
+      
+        
+        }
+
+    
 
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -181,7 +224,7 @@ class PredstavaController extends Controller
     public function show($id)
     {
          $predstava=Predstava::find($id);
-        return view("predstava-detalji")->with('predstava', $predstava);
+        return view("predstave-detalji")->with('predstava', $predstava);
     }
 
     /**

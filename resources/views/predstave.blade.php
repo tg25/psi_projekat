@@ -22,9 +22,11 @@
             </div>
         </div>
 
+
+        <hr>
          <form class="form-signin"  method="POST" action="{{url('/predstave/prikazi')}}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div class="well">
+            
                     
 
 
@@ -34,7 +36,8 @@
                 <div class="col-lg-6">
                     <div class="input-group" >
                         <label float="right" >Predstava</label>
-                        <input  name="Naziv" width="150px" type="text" class="form-control">
+                        <input autocomplete="false" id="Naziv" name="Naziv" width="150px" onkeyup="showAutoComplete(this.value)" type="text" class="form-control">
+                        <div id = "autocomplete"></div>
                         
 
                         </br></br>
@@ -72,21 +75,11 @@
             
 
 
-
-             <div class="row">
-
-             <span class="input-group-btn">
-                            <button width="150px" class="btn btn-default" type="submit">Prikazi</button>
-            </span>
-             </div>
-
-
-
-            </div>
+            
 
 
          </form>
-
+         <hr>
 
 
 
@@ -120,7 +113,7 @@
                 <h3>{{$p->Naziv}}</h3>
                 <p>{{$poz->Naziv}}</p>
                 <p>{{$p->Detaljnije}}</p>
-                <a class="btn btn-primary" href="/vesti/{{$p->IDPre}}">Detaljnije</i></a>
+                <a class="btn btn-default" href="/predstave/{{$p->IDPre}}">Detaljnije</i></a>
             </div>
         </div>
         <!-- /.row -->

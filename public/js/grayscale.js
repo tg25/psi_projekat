@@ -29,8 +29,36 @@ function showUser(str) {
     }
 }
 
+function zamenitekst(str) {
+
+    document.getElementById("Naziv").value=str;
+}
 
 
+
+
+
+function showAutoComplete(str) {
+    if (str == "") {
+        document.getElementById("autocomplete").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("autocomplete").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET","predstave/complete/"+str,true);
+        xmlhttp.send();
+    }
+}
 
 
 

@@ -3055,13 +3055,13 @@ fieldset[disabled] a.btn {
 .btn-default {
   color: #333;
   background-color: #fff;
-  border-color: #ccc;
+  border-color: #ff0800;
 }
 .btn-default:focus,
 .btn-default.focus {
   color: #333;
   background-color: #e6e6e6;
-  border-color: #8c8c8c;
+  border-color: #ff0800;
 }
 .btn-default:hover {
   color: #333;
