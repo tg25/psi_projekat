@@ -59,7 +59,7 @@
              <!-- Content Column -->
 
              <div class="col-md-9" id="txtHint">
-              
+            <?php   ?>
              </div>
          </div>
          <!-- /.row -->
