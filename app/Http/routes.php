@@ -63,6 +63,9 @@ Route::get('proba', function () {
 });
 
 //Rute za admina AKCIJA
+//predstave/formaZaIzmene/
+Route::get('/predstave/formaZaIzmene/{id}','PredstavaController@formaZaIzmene');
+Route::post('/predstave/edit/','PredstavaController@edit');
 
 Route::get('/predstave/destroy/{id}','PredstavaController@destroy');
 Route::get('/predstave/formaZaUnos/{p}','PredstavaController@formaZaUnos');

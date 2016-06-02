@@ -15,14 +15,62 @@ use Illuminate\Support\Facades\Input;
 class PredstavaController extends Controller
 {
 
-    public function formaZaUnos($b=8){
+    public function formaZaIzmene($id){
 
-      echo '<form class="form-control"  method="POST" action='.url('/predstave/create').'>
+      $predstava = DB::table('predstava')->where('IDPre', $id)->first();
+      $poz = DB::table('pozoriste')->where('IDPoz', $predstava->IDPoz)->first();
+      $pozorista = Pozoriste::all();
+      echo '
+          <table class="table">
+            <tr>
+              <td>Naziv predstave:</td>
+              <td>'.$predstava->Naziv.'</td>
+            </tr>
+            <tr>
+              <td>Pozoriste:</td>
+              <td>'.$poz->Naziv.'</td>
+            </tr>
+            <tr>
+              <td>Detaljnije:</td>
+              <td>'.$predstava->Detaljnije.'</td>
+            </tr>
+            <tr>
+              <td>Slika:</td>
+              <td>'.$predstava->Slika.'</td>
+            </tr>
+          </table>
+      ';
+      echo '<form  class="form-horizontal" method="POST" action='.url('/predstave/edit').'>
+            <input  type="hidden" name="_token" value='.csrf_token().'>
+            <input type="hidden" name="IDPre" value='.$id.'>
+            <label class="control-label">Naziv:</label><input type="text" name="naziv" class="form-control"></br>
+            <label class="control-label">Pozoriste:</label>
+            <select  name="pozoriste" width="150px" class="form-control">';
+               foreach($pozorista as $poz)
+                  echo '<option>'.$poz->Naziv.'</option>';
+      echo '
+            </select>
+            </br>
+            <label class="control-label">Detaljnije:</label><input type="text" name="detaljnije" class="form-control"></br>
+            <label class="control-label">Slika:</label><input type="text" name="slika" class="form-control"></br>
+            <button width="150px" class="btn btn-default" type="submit">Promeni</button>';
+
+    }
+
+    public function formaZaUnos($b=8){
+      $pozorista = Pozoriste::all();
+      echo '<form class="form-horizontal"  method="POST" action='.url('/predstave/create').'>
             <input type="hidden" name="_token" value='.csrf_token().'>
-            <label>Naziv:</label><input type="text" name="naziv" ></br>
-            <label>Pozoriste:</label><input type="text" name="pozoriste" value=""></br>
-            <label>Detaljnije:</label><input type="text" name="detaljnije" value=""></br>
-            <label>Slika:</label><input type="text" name="slika" value=""></br>
+            <label class="control-label">Naziv:</label><input type="text" name="naziv" class="form-control"></br>
+            <label class="control-label">Pozoriste:</label>
+            <select  name="pozoriste" width="150px" class="form-control">';
+               foreach($pozorista as $poz)
+                  echo '<option>'.$poz->Naziv.'</option>';
+      echo '
+            </select>
+            </br>
+            <label class="control-label">Detaljnije:</label><input type="text" name="detaljnije" class="form-control"></br>
+            <label class="control-label">Slika:</label><input type="text" name="slika" class="form-control"></br>
             <button width="150px" class="btn btn-default" type="submit">Unesi</button>';
     }
 
@@ -42,7 +90,7 @@ class PredstavaController extends Controller
             echo '<tr>
             <td>'.$p->Naziv.'</td>
             <td>'.$poz->Naziv.'</td>
-            <td><a href="/predstave/update/'.$p->IDPre.'">Izmeni</a></td>
+            <td><a href="" onClick="return edit('.$p->IDPre.')">Izmeni</a></td>
             <td><a href="" onClick="return dodaj()">Dodaj</a></td>
             <td><a href="/predstave/destroy/'.$p->IDPre.'">Obrisi</a></td>
           </tr>';
@@ -246,6 +294,8 @@ class PredstavaController extends Controller
           $predstava->IDPoz = $idpoz;
 
           $predstava->save();
+
+          return redirect()->intended('/admin');
     }
 
     /**
@@ -297,9 +347,31 @@ class PredstavaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+
+
+
+      $idpre = $request->IDPre;
+      $naziv=$request->naziv;
+      $pozoriste=$request->pozoriste;
+      $detaljnije=$request->detaljnije;
+      $slika=$request->slika;
+
+
+      $poz = DB::table('pozoriste')->where('Naziv', $pozoriste)->first();
+
+      $idpoz=$poz->IDPoz;
+
+      $predstava = Predstava::find($idpre);
+      $predstava->Naziv = $naziv;
+      $predstava->Detaljnije = $detaljnije;
+      $predstava->Slika = $slika;
+      $predstava->IDPoz = $idpoz;
+
+      $predstava->save();
+
+      return redirect()->intended('/admin');
     }
 
     /**
