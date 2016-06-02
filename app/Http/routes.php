@@ -19,6 +19,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('predstave/pretraga/{q}', 'PredstavaController@pretraga');
 
     Route::get('/predstave/complete/{q}', 'PredstavaController@complete');
+
+    Route::get('glumci/pronadji/{q}', 'GlumciController@pronadji');
 });
 
 

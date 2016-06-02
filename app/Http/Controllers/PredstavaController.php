@@ -7,6 +7,8 @@ use DB;
 use App\Http\Requests;
 use App\Predstava;
 use App\Pozoriste;
+use App\Glumac;
+use App\RadiNa;
 use Illuminate\Support\Facades\Input;
 
 
@@ -265,8 +267,28 @@ class PredstavaController extends Controller
      */
     public function show($id)
     {
-         $predstava=Predstava::find($id);
-        return view("predstave-detalji")->with('predstava', $predstava);
+        $predstava=Predstava::find($id);
+
+        $glumci=DB::table('radina')
+                    ->join('predstava', 'radina.IDPre', '=', 'predstava.IDPre')
+                    ->join('ucesnici', 'ucesnici.IDUce', '=', 'radina.IDUce')
+                    ->select('ucesnici.*')
+                    ->where('radina.IDpre', $predstava->IDPre)
+                    ->where('radina.Uloga', "Glumac")
+                    ->get();
+         $producenti=DB::table('radina')
+                    ->join('predstava','radina.IDPre' , '=','predstava.IDPre')
+                    ->join('ucesnici', 'ucesnici.IDUce', '=', 'radina.IDUce')
+                    ->select('ucesnici.*')
+                    ->where('radina.IDpre', $predstava->IDPre)
+                    ->where('radina.Uloga', "Producent")
+
+                    ->get();
+
+
+
+
+        return view("predstave-detalji")->with('predstava', $predstava)->with('glumci',$glumci)->with('producenti',$producenti);
     }
 
     /**
