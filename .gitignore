@@ -47,3 +47,4 @@ Temporary Items
 .apdisk
 app/Http/routes.php
 app/Http/routes.php
+resources/views/auth/login.blade.php

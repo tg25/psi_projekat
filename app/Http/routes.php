@@ -17,13 +17,21 @@ Route::get('/predstave/complete/{q}', 'PredstavaController@complete');
 Route::group(['middleware' => ['web']], function () {
     //
     Route::get('predstave/pretraga/{q}', 'PredstavaController@pretraga');
+<<<<<<< HEAD
     Route::get('/predstave/complete/{q}', 'PredstavaController@complete');
 });
+=======
+>>>>>>> origin/master
 
+    Route::get('admin', ['middleware' => 'admin', function () {
 
+           return view('admin');
 
+       }]);
 
+       Route::auth();
 
+       Route::get('/welcome', 'HomeController@index');
 
 
 
@@ -33,8 +41,13 @@ Route::get('/', function () {
 
  Route::get('predstave/pretraga/{q}', 'PredstavaController@pretraga');
 
+<<<<<<< HEAD
 
 Route::resource("glumci", "GlumciController");
+=======
+Route::get('predstave/svePred/', 'PredstavaController@svePred');
+
+>>>>>>> origin/master
 
 Route::resource("korisnik", "KorisnikController");
 
@@ -46,4 +59,12 @@ Route::resource("predstave", "PredstavaController");
 
 Route::get('proba', function () {
     return view('layoutStandard');
+});
+
+//Rute za admina AKCIJA
+
+Route::get('/predstave/destroy/{id}','PredstavaController@destroy');
+Route::get('/predstave/formaZaUnos/{p}','PredstavaController@formaZaUnos');
+Route::post('/predstave/create/','PredstavaController@create');
+
 });
