@@ -4,7 +4,7 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-<<<<<<< HEAD
+
 
 
 function showGlumci(str){
@@ -38,7 +38,7 @@ function showGlumci(str){
 
 
 
-=======
+
  function edit(id){
 
 
@@ -57,18 +57,16 @@ function showGlumci(str){
        };
        xmlhttp.open("GET","predstave/formaZaIzmene/"+id,true);
        xmlhttp.send();
->>>>>>> ecb92f4096de1e31a30fc4f031471877a1e82c33
 
 
 
 
-<<<<<<< HEAD
 
-=======
+
  return false;
 
  }
->>>>>>> ecb92f4096de1e31a30fc4f031471877a1e82c33
+
 
 
  function dodaj(str=8){
