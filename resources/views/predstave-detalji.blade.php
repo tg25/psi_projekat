@@ -29,6 +29,22 @@
         <div class="row">
             <div class="col-md-6">
                 <img class="img-responsive" src="{{$predstava->Slika}}" alt="">
+                Glumci:
+                @foreach($glumci as $g)
+
+                    {{$g->Ime}} 
+                    {{$g->Prezime}},
+
+                @endforeach
+                </br>
+                Produkcija:
+                @foreach($producenti as $pro)
+
+                    {{$pro->Ime}} 
+                    {{$pro->Prezime}},
+
+                @endforeach
+                <p></p>
             </div>
             <div class="col-md-6">
                 <h2>{{$predstava->Naziv}}</h2>
@@ -40,6 +56,7 @@
 
 
 
+<<<<<<< HEAD
          <!-- Blog Comments -->
 
                 <!-- Comments Form -->
@@ -84,6 +101,9 @@
                   @endif
                 @endforeach
 
+=======
+         
+>>>>>>> origin/master
 </div>
 
 

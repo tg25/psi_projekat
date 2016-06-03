@@ -7,7 +7,12 @@ use DB;
 use App\Http\Requests;
 use App\Predstava;
 use App\Pozoriste;
+<<<<<<< HEAD
 use App\Komentar;
+=======
+use App\Glumac;
+use App\RadiNa;
+>>>>>>> origin/master
 use Illuminate\Support\Facades\Input;
 
 
@@ -249,9 +254,34 @@ class PredstavaController extends Controller
      */
     public function show($id)
     {
+<<<<<<< HEAD
         $komentari=Komentar::all();
          $predstava=Predstava::find($id);
         return view("predstave-detalji")->with('predstava', $predstava)->with('komentari',$komentari);
+=======
+        $predstava=Predstava::find($id);
+
+        $glumci=DB::table('radina')
+                    ->join('predstava', 'radina.IDPre', '=', 'predstava.IDPre')
+                    ->join('ucesnici', 'ucesnici.IDUce', '=', 'radina.IDUce')
+                    ->select('ucesnici.*')
+                    ->where('radina.IDpre', $predstava->IDPre)
+                    ->where('radina.Uloga', "Glumac")
+                    ->get();
+         $producenti=DB::table('radina')
+                    ->join('predstava','radina.IDPre' , '=','predstava.IDPre')
+                    ->join('ucesnici', 'ucesnici.IDUce', '=', 'radina.IDUce')
+                    ->select('ucesnici.*')
+                    ->where('radina.IDpre', $predstava->IDPre)
+                    ->where('radina.Uloga', "Producent")
+
+                    ->get();
+
+
+
+
+        return view("predstave-detalji")->with('predstava', $predstava)->with('glumci',$glumci)->with('producenti',$producenti);
+>>>>>>> origin/master
     }
 
     /**
