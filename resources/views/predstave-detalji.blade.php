@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    
+
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="index.html">Home</a>
@@ -43,60 +43,82 @@
          <!-- Blog Comments -->
 
                 <!-- Comments Form -->
+                @if (Auth::guest())
+                <hr>
+
+                @else
+              <?php
+                $id=Auth::user()->id;
+                $name=Auth::user()->name;
+                $idpre=$predstava->IDPre;
+                $tip=0;
+              ?>
                 <hr>
                     <h4>Leave a Comment:</h4>
                     <div class="form-group">
-                    <form role="form">
-                        
-                        <textarea class="form-control" rows="3"></textarea>
+                    <form role="form" method="POST" action="{{ url('/komentar/post') }}">
+                        {{ csrf_field() }}
+                          <input type="hidden" name="IDKor" value="{{$id}}">
+                          <input type="hidden" name="name" value="{{$name}}">
+                          <input type="hidden" name="IDPre" value="{{$idpre}}">
+
+                        <textarea class="form-control" name="sadrzaj" rows="3"></textarea>
                         </br>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                     </div>
-               
 
                 <hr>
+                @endif
 
                 <!-- Posted Comments -->
 
                 <!-- Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div>
 
-                <!-- Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        <!-- Nested Comment -->
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" src="http://placehold.it/64x64" alt="">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">Nested Start Bootstrap
-                                    <small>August 25, 2014 at 9:30 PM</small>
-                                </h4>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
+                @foreach($komentari->reverse() as $k)
+                  @if($k->IDPre==$predstava->IDPre)
+                    <?php
+                      $kor = DB::table('users')->where('id', $k->IDReg)->first();
+                     ?>
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="https://www.londontheatre1.com/wp-content/uploads/2015/09/favico264.jpg" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{$kor->name}}
+                                <small>{{$k->created_at}}</small>
+                            </h4>
+                            <h5 class="pull-right">
+                              @if(!Auth::guest())
+                                @if($kor->id!=Auth::user()->id)
+                                  <form role="form" method="POST" action="{{ url('/komentar/prijavi') }}">
+                                      {{ csrf_field() }}
+                                        <input type="hidden" name="IDPre" value="{{$idpre}}">
+                                        <input type="hidden" name="IDKom" value="{{$k->IDKom}}">
+                                  <button type="submit" class="btn-danger">Prijavi ovaj komentar</button>
+                                  </form>
+                                  @else
+                                    <form role="form" method="POST" action="{{ url('/komentar/obrisi') }}">
+                                        {{ csrf_field() }}
+                                          <input type="hidden" name="IDPre" value="{{$idpre}}">
+                                          <input type="hidden" name="IDKom" value="{{$k->IDKom}}">
+                                          <input type="hidden" name="tip" value="{{$tip}}">
+                                    <button type="submit" class="btn-danger">Obrisi komentar</button>
+                                    </form>
+                                @endif
+                              @endif
+                            </h5>
+                              {{$k->Sadrzaj}}
+                              </br></br>
+                            @if($k->Prijava>0)
+                            <h6 style="color:red">Broj prijava: &nbsp;&nbsp;&nbsp; {{$k->Prijava}}</h6>
+                            @endif
+
                         </div>
-                        <!-- End Nested Comment -->
                     </div>
-                </div>
+                  @endif
+                @endforeach
+
 </div>
 
 
