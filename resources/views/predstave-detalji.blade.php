@@ -15,7 +15,7 @@
 
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a>
+                    <li><a href="/">Home</a>
                     </li>
                     <li><a href="/predstave">Predstave</a>
                     </li>
@@ -72,7 +72,7 @@
               <td align="center"><strong>{{$pro->Vreme}}</strong></td>
               <td align="center"><strong>{{$pro->Naziv}}</strong></td>
               <td align="center"><strong>{{$pro->Cena}}</strong></td>
-              <td align="center"><a class="btn btn-default" href="/rezervacija?pro={{$pro->IDPro}}" onClick="">Rezervacija</a></td>
+              <td align="center"><a class="btn btn-default" href="/rezervacija?pro={{$pro->IDPro}}&pred={{$predstava->Naziv}}&poz={{$pozoriste->Naziv}}" onClick="">Rezervacija</a></td>
               
             </tr>
             @endforeach

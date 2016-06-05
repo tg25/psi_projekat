@@ -66,8 +66,8 @@ Route::get('/vesti/formaZaIzmene/{p}','VestiController@formaZaIzmene');
 Route::post('/vesti/create/', 'VestiController@create');
 Route::post('vesti/edit/', 'VestiController@edit');
 Route::get('vesti/destroy/{id}', 'VestiController@destroy');
-
-
+Route::get('/rezervacija/pronadji/{q}/{p}/{g}/{k}', 'RezervacijaController@pronadji');
+Route::post('/rezervacija/remember/','RezervacijaController@remember');
 Route::resource("korisnik", "KorisnikController");
 
 Route::resource("vesti", "VestiController");
@@ -86,6 +86,7 @@ Route::get('proba', function () {
 //predstave/formaZaIzmene/
 Route::get('/predstave/formaZaIzmene/{id}','PredstavaController@formaZaIzmene');
 Route::post('/predstave/edit/','PredstavaController@edit');
+
 Route::get('/predstave/destroy/{id}','PredstavaController@destroy');
 Route::get('/predstave/formaZaUnos/{p}','PredstavaController@formaZaUnos');
 Route::post('/predstave/create/','PredstavaController@create');

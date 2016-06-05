@@ -143,7 +143,7 @@ z-index: 99999;
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
+                <a class="navbar-brand page-scroll" href="/">
                     <i class="fa fa-play-circle"></i>  <span class="light">e</span> Poz
                 </a>
             </div>
@@ -156,7 +156,7 @@ z-index: 99999;
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="">Repertoar</a>
+                        <a class="page-scroll" href="/">Repertoar</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="/vesti/">Vesti</a>
@@ -168,7 +168,7 @@ z-index: 99999;
                         <a class="page-scroll" href="/pozorista">Pozorišta</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#download">Glumci</a>
+                        <a class="page-scroll" href="/glumci">Glumci</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">O nama</a>
@@ -335,14 +335,14 @@ z-index: 99999;
 
 
     <!-- Intro Header -->
-
+        @yield('header')
     <div class="container">
         @yield('content')
    </div>
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; Your Website 2014</p>
+            <p>Copyright &copy; E-poz 2016</p>
         </div>
     </footer>
 
