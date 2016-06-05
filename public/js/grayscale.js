@@ -3,6 +3,72 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
+ function mod(str){
+   document.getElementById("sub").innerHTML=str;
+   document.getElementById("tabela").value=str;
+
+   if (str == "") {
+       document.getElementById("txtHint").innerHTML = "";
+       return;
+   } else {
+       if (window.XMLHttpRequest) {
+           // code for IE7+, Firefox, Chrome, Opera, Safari
+           xmlhttp = new XMLHttpRequest();
+       } else {
+           // code for IE6, IE5
+           xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+       }
+       xmlhttp.onreadystatechange = function() {
+           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+           }
+       };
+       if(str=="Vesti"){
+         xmlhttp.open("GET","vesti/sveVesti/",true);
+         xmlhttp.send();
+       }
+       if(str=="Komentari"){
+         xmlhttp.open("GET","komentari/sviKomentari/",true);
+         xmlhttp.send();
+       }
+
+       //xmlhttp.send();
+   }
+
+ return false;
+ }
+
+ function modvesti(id){
+
+       if (window.XMLHttpRequest) {
+           // code for IE7+, Firefox, Chrome, Opera, Safari
+           xmlhttp = new XMLHttpRequest();
+       } else {
+           // code for IE6, IE5
+           xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+       }
+       xmlhttp.onreadystatechange = function() {
+           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+           }
+       };
+       if(id==0){
+         xmlhttp.open("GET","vesti/formaZaUnos/"+id,true);
+         xmlhttp.send();
+       }
+       else
+       {
+         xmlhttp.open("GET","vesti/formaZaIzmene/"+id,true);
+         xmlhttp.send();
+       }
+
+       //xmlhttp.send();
+
+
+ return false;
+ }
+
+
 
 
 
@@ -161,7 +227,7 @@ function showAutoComplete(str) {
     if (str == "") {
         document.getElementById("autocomplete").innerHTML = "";
         return;
-    } else { 
+    } else {
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();

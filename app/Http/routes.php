@@ -20,7 +20,11 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/predstave/complete/{q}', 'PredstavaController@complete');
 
+<<<<<<< HEAD
+    Route::get('/predstava/{idpre}', 'PredstavaController@show');
+=======
     Route::get('glumci/pronadji/{q}', 'GlumciController@pronadji');
+>>>>>>> origin/master
 });
 
 
@@ -29,6 +33,12 @@ Route::group(['middleware' => ['web']], function () {
            return view('admin');
 
        }]);
+
+    Route::get('moderator', ['middleware' => 'moderator', function () {
+
+              return view('moderator');
+
+          }]);
 
        Route::auth();
 
@@ -47,7 +57,15 @@ Route::get('/', function () {
 Route::resource("glumci", "GlumciController");
 
 Route::get('predstave/svePred/', 'PredstavaController@svePred');
+//ubcaeno pre da ga show ne bi zamaskirao
+Route::get('vesti/sveVesti/', 'VestiController@sveVesti');
 
+
+Route::get('/vesti/formaZaUnos/{p}','VestiController@formaZaUnos');
+Route::get('/vesti/formaZaIzmene/{p}','VestiController@formaZaIzmene');
+Route::post('/vesti/create/', 'VestiController@create');
+Route::post('vesti/edit/', 'VestiController@edit');
+Route::get('vesti/destroy/{id}', 'VestiController@destroy');
 
 
 Route::resource("korisnik", "KorisnikController");
@@ -66,8 +84,15 @@ Route::get('proba', function () {
 //predstave/formaZaIzmene/
 Route::get('/predstave/formaZaIzmene/{id}','PredstavaController@formaZaIzmene');
 Route::post('/predstave/edit/','PredstavaController@edit');
-
 Route::get('/predstave/destroy/{id}','PredstavaController@destroy');
 Route::get('/predstave/formaZaUnos/{p}','PredstavaController@formaZaUnos');
 Route::post('/predstave/create/','PredstavaController@create');
 
+//ruteZaKomentar
+Route::post('/komentar/post','KomentarController@post');
+Route::post('/komentar/prijavi','KomentarController@prijavi');
+Route::post('/komentar/obrisi','KomentarController@obrisi');
+
+//ruteZaModeratora
+
+Route::get('komentari/sviKomentari/', 'KomentarController@sviKomentari');

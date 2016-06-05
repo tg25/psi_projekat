@@ -10,11 +10,15 @@ use App\Pozoriste;
 <<<<<<< HEAD
 use App\Komentar;
 =======
+<<<<<<< HEAD
+use App\Komentar;
+=======
 use App\Glumac;
 use App\RadiNa;
 <<<<<<< HEAD
 use App\Projekcije;
 =======
+>>>>>>> origin/master
 >>>>>>> origin/master
 >>>>>>> origin/master
 use Illuminate\Support\Facades\Input;
@@ -350,6 +354,11 @@ class PredstavaController extends Controller
      */
     public function show($id)
     {
+<<<<<<< HEAD
+        $komentari=Komentar::all();
+         $predstava=Predstava::find($id);
+        return view("predstave-detalji")->with('predstava', $predstava)->with('komentari',$komentari);
+=======
 <<<<<<< HEAD
         $komentari=Komentar::all();
          $predstava=Predstava::find($id);

@@ -90,12 +90,31 @@
                 <hr>
 
                 @else
+<<<<<<< HEAD
+              <?php
+                $id=Auth::user()->id;
+                $name=Auth::user()->name;
+                $idpre=$predstava->IDPre;
+                $tip=0;
+              ?>
+                <hr>
+                    <h4>Leave a Comment:</h4>
+                    <div class="form-group">
+                    <form role="form" method="POST" action="{{ url('/komentar/post') }}">
+                        {{ csrf_field() }}
+                          <input type="hidden" name="IDKor" value="{{$id}}">
+                          <input type="hidden" name="name" value="{{$name}}">
+                          <input type="hidden" name="IDPre" value="{{$idpre}}">
+
+                        <textarea class="form-control" name="sadrzaj" rows="3"></textarea>
+=======
                 <hr>
                     <h4>Leave a Comment:</h4>
                     <div class="form-group">
                     <form role="form" method="POST" >
 
                         <textarea class="form-control" rows="3"></textarea>
+>>>>>>> origin/master
                         </br>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
@@ -115,20 +134,56 @@
                      ?>
                     <div class="media">
                         <a class="pull-left" href="#">
+<<<<<<< HEAD
+                            <img class="media-object" src="https://www.londontheatre1.com/wp-content/uploads/2015/09/favico264.jpg" alt="">
+=======
                             <img class="media-object" src="http://placehold.it/64x64" alt="">
+>>>>>>> origin/master
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">{{$kor->name}}
                                 <small>{{$k->created_at}}</small>
                             </h4>
+<<<<<<< HEAD
+                            <h5 class="pull-right">
+                              @if(!Auth::guest())
+                                @if($kor->id!=Auth::user()->id)
+                                  <form role="form" method="POST" action="{{ url('/komentar/prijavi') }}">
+                                      {{ csrf_field() }}
+                                        <input type="hidden" name="IDPre" value="{{$idpre}}">
+                                        <input type="hidden" name="IDKom" value="{{$k->IDKom}}">
+                                  <button type="submit" class="btn-danger">Prijavi ovaj komentar</button>
+                                  </form>
+                                  @else
+                                    <form role="form" method="POST" action="{{ url('/komentar/obrisi') }}">
+                                        {{ csrf_field() }}
+                                          <input type="hidden" name="IDPre" value="{{$idpre}}">
+                                          <input type="hidden" name="IDKom" value="{{$k->IDKom}}">
+                                          <input type="hidden" name="tip" value="{{$tip}}">
+                                    <button type="submit" class="btn-danger">Obrisi komentar</button>
+                                    </form>
+                                @endif
+                              @endif
+                            </h5>
+                              {{$k->Sadrzaj}}
+                              </br></br>
+                            @if($k->Prijava>0)
+                            <h6 style="color:red">Broj prijava: &nbsp;&nbsp;&nbsp; {{$k->Prijava}}</h6>
+                            @endif
+
+=======
                             {{$k->Sadrzaj}}
+>>>>>>> origin/master
                         </div>
                     </div>
                   @endif
                 @endforeach
 
+<<<<<<< HEAD
+=======
 =======
          
+>>>>>>> origin/master
 >>>>>>> origin/master
 </div>
 

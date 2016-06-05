@@ -51,6 +51,9 @@ class AuthController extends Controller
     if($user->getTip()==2) {
         return redirect()->intended('/admin');
     }
+    if($user->getTip()==1) {
+        return redirect()->intended('/moderator');
+    }
     return redirect()->intended('/welcome');
 }
 
