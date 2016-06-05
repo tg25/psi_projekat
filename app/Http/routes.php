@@ -20,6 +20,15 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/predstave/complete/{q}', 'PredstavaController@complete');
 
+    Route::get('/regForm/', function()
+    {
+      return view('regForm');
+    });
+
+    Route::get('/logForm/', function()
+    {
+      return view('logForm');
+    });
 
     Route::get('/predstava/{idpre}', 'PredstavaController@show');
 
@@ -99,3 +108,40 @@ Route::post('/komentar/obrisi','KomentarController@obrisi');
 //ruteZaModeratora
 
 Route::get('komentari/sviKomentari/', 'KomentarController@sviKomentari');
+
+
+
+//rute za pozorista, admin
+Route::get('svaPoz/', 'PozoristeController@svaPoz');
+Route::get('destroy/{id}', 'PozoristeController@destroy');
+Route::get('formaZaUnos/{p}','PozoristeController@formaZaUnos');
+Route::post('create/', 'PozoristeController@create');
+Route::get('formaZaIzmene/{p}','PozoristeController@formaZaIzmene');
+Route::post('edit/', 'PozoristeController@edit');
+//glumci/sviGlumci/
+Route::get('sviGlumci/', 'GlumciController@sviGlumci');
+Route::get('glumci/destroy/{id}', 'GlumciController@destroy');
+Route::get('glumci/formaZaUnos/{p}','GlumciController@formaZaUnos');
+Route::post('glumci/create/', 'GlumciController@create');
+Route::get('glumci/formaZaIzmene/{p}','GlumciController@formaZaIzmene');
+Route::post('glumci/edit/', 'GlumciController@edit');
+//glumci/edit
+//glumci/formaZaIzmene/
+//glumci/formaZaUnos/
+//glumci/destroy/
+//predstave/repertoar/
+
+
+//Rute za projekcije
+//repertoar/
+//projekcije/destroy/
+//repertoar/formaZaUnos/
+//repertoar/create
+//repertoar/formaZaIzmene/
+///repertoar/edit
+Route::get('repertoar/', 'ProjekcijaController@repertoar');
+Route::get('projekcije/destroy/{id}', 'ProjekcijaController@destroy');
+Route::get('repertoar/formaZaUnos/{p}','ProjekcijaController@formaZaUnos');
+Route::post('repertoar/create/', 'ProjekcijaController@create');
+Route::get('repertoar/formaZaIzmene/{p}','ProjekcijaController@formaZaIzmene');
+Route::post('repertoar/edit/', 'ProjekcijaController@edit');
