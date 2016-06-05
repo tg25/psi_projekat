@@ -12,13 +12,13 @@
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">One Column Portfolio
-                    <small>Subheading</small>
+                <h1 class="page-header">Vesti
+                    <small></small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="index.html">Home</a>
                     </li>
-                    <li class="active">One Column Portfolio</li>
+                    <li class="active">Vesti</li>
                 </ol>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <h3>{{$v->Naslov}}</h3>
               
                 <p>{{$v->Ukratko}}</p>
-                <a class="btn btn-primary" href="/vesti/{{$v->IDVes}}">Detaljnije</i></a>
+                <a class="btn btn-default" href="/vesti/{{$v->IDVes}}">Detaljnije</i></a>
             </div>
         </div>
         <!-- /.row -->

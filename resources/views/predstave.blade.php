@@ -11,13 +11,13 @@
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">One Column Portfolio
-                    <small>Subheading</small>
+                <h1 class="page-header">Predstave
+                    <small>Pretraga</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="index.html">Home</a>
                     </li>
-                    <li class="active">One Column Portfolio</li>
+                    <li class="active">Predstave</li>
                 </ol>
             </div>
         </div>
@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="input-group" >
-                        <label float="right" >Predstava</label>
+                        <label float="right" >Pretraga predstave po imenu</label>
                         <input autocomplete="false" id="Naziv" name="Naziv" width="150px" onkeyup="showAutoComplete(this.value)" type="text" class="form-control">
                         <div id = "autocomplete"></div>
                         
@@ -48,12 +48,13 @@
                 </div>
 
 
-
+               
 
                 <div class="col-lg-6">
                      <div class="input-group">
                          <label float="right" >Izaberi pozoriste:</label>
-                         <select  name="NazivPoz" width="150px" class="form-control" onchange="showUser(this.value)">
+                         <select  id="NazivPoz" name="NazivPoz" width="150px" class="form-control" onchange="showUser(this.value)">
+                            <option>--Sva pozorišta--</option>
                             @foreach($pozorista as $poz)
                                 
                                  <option>{{$poz->Naziv}}</option>

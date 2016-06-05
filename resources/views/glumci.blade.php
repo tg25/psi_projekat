@@ -11,13 +11,13 @@
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Three Column Portfolio
-                    <small>Subheading</small>
+                <h1 class="page-header">Glumci
+                    <small>i ostali</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="index.html">Home</a>
                     </li>
-                    <li class="active">Three Column Portfolio</li>
+                    <li class="active">Glumci</li>
                 </ol>
             </div>
         </div>
@@ -50,7 +50,7 @@
         <!-- Project One -->
         
              <div class="col-md-4 img-portfolio">
-                <a href="portfolio-item.html">
+                <a href="/glumci/{{$g->IDUce}}">
                     <img class="img-responsive img-hover" src="{{$g->Slika}}" alt="">
                 </a>
                 <h3>

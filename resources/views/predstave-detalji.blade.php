@@ -29,6 +29,7 @@
         <div class="row">
             <div class="col-md-6">
                 <img class="img-responsive" src="{{$predstava->Slika}}" alt="">
+
                 Glumci:
                 @foreach($glumci as $g)
 
@@ -53,6 +54,31 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
             </div>
         </div>
+
+        <table class="table">
+            <tr>
+              <td align="center"><strong>Pozorište</strong></td>
+              <td align="center"><strong>Datum</strong></td>
+              <td align="center"><strong>Vreme</strong></td>
+              <td align="center"><strong>Sala</strong></td>
+              <td align="center"><strong>Cena</strong></td>
+              <td align="center"></td>
+
+            </tr>
+            @foreach ($projekcije as $pro) 
+            <tr>
+              <td align="center"><strong>{{$pozoriste->Naziv}}</strong></td>
+              <td align="center"><strong>{{$pro->Datum}}</strong></td>
+              <td align="center"><strong>{{$pro->Vreme}}</strong></td>
+              <td align="center"><strong>{{$pro->Naziv}}</strong></td>
+              <td align="center"><strong>{{$pro->Cena}}</strong></td>
+              <td align="center"><a class="btn btn-default" href="" onClick="return dodaj()">Rezervacija</a></td>
+              
+            </tr>
+            @endforeach
+
+        </table>
+
 
 
 

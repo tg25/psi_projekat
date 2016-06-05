@@ -9,6 +9,7 @@ use App\Predstava;
 use App\Pozoriste;
 use App\Glumac;
 use App\RadiNa;
+use App\Projekcije;
 use Illuminate\Support\Facades\Input;
 
 
@@ -131,12 +132,12 @@ class PredstavaController extends Controller
 
     public function complete($q){
         //return view("proba")->with("naziv", $q);
-        $query=DB::table('predstava')->select('predstava.Naziv')->get();
+        $query=DB::table('predstava')->select('predstava.*')->get();
         $niz;
         $k=0;
         foreach($query as $que){
 
-
+            $nizID[$k]=$que->IDPre;
             $niz[$k]=(String)$que->Naziv;
             $k=$k+1;
         }
@@ -146,24 +147,26 @@ class PredstavaController extends Controller
         if (strlen($q) > 0)
         {
             $hint;
+            $hintID;
+            
             for($i=0; $i<count($niz); $i++)
             {
                 if (strtolower($q)==strtolower(substr($niz[$i],0,strlen($q))))
                 {
                     $hint[$k]=$niz[$i];
+                    $hintID[$k]=$nizID[$i];
                     $k=$k+1;
-                    
+                   
                     
                 }
             }
 
 
 
-        
+              $n=0;
                 foreach ($hint as $h) {
-                    echo '<a style="font-size:13pt;" onclick="return zamenitekst(';
-                    echo "'".$h."'";
-                    echo ')">'.$h.'</a></br>';
+                    echo '<a style="font-size:13pt;"  href="/predstave/'.$hintID[$n].'">'.$h.'</a></br>';
+                    $n=$n+1;
                 }
                 
   
@@ -242,7 +245,7 @@ class PredstavaController extends Controller
                 <h3>'.$p->Naziv.'</h3>
                 <p>'.$poz->Naziv.'</p>
                 <p>'.$p->Detaljnije.'</p>
-                <a class="btn btn-primary" href="/vesti/'.$p->IDPre.'">Detaljnije</i></a>
+                <a class="btn btn-default" href="/vesti/'.$p->IDPre.'">Detaljnije</i></a>
             </div>
         </div>
 
@@ -250,6 +253,37 @@ class PredstavaController extends Controller
         <hr>';
 
             }
+
+
+            }
+
+            else if($q== "--Sva pozorišta--") {
+
+              $predstave=Predstava::all();
+                foreach ($predstave as $p ) {
+
+                $poz = DB::table('pozoriste')->where('IDPoz', $p->IDPoz)->first();
+
+               echo '<div class="row">
+            <div class="col-md-7">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="'.$p->Slika.'" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>'.$p->Naziv.'</h3>
+                <p>'.$poz->Naziv.'</p>
+                <p>'.$p->Detaljnije.'</p>
+                <a class="btn btn-default" href="/vesti/'.$p->IDPre.'">Detaljnije</i></a>
+            </div>
+        </div>
+
+
+        <hr>';
+
+            }
+
+
 
 
             }
@@ -318,6 +352,23 @@ class PredstavaController extends Controller
     public function show($id)
     {
         $predstava=Predstava::find($id);
+        $projekcije=DB::table('projekcija')
+                        ->orderBy('Datum', 'asc')
+                        ->orderBy('Vreme', 'asc')
+                        ->join('predstava', 'predstava.IDPre','=','projekcija.IDPre')
+                        ->join('sala', 'sala.IDSala','=', 'projekcija.IDSal')
+                        
+                        ->select('projekcija.*', 'sala.Naziv')
+
+                        ->where('projekcija.IDPre', $id)
+
+                        ->get();
+
+        $pozoriste=DB::table('predstava')
+                      ->join('pozoriste','pozoriste.IDPoz','=','predstava.IDPoz')
+                      ->select('pozoriste.*')
+                      ->where('predstava.IDPre', $id)
+                      ->first();
 
         $glumci=DB::table('radina')
                     ->join('predstava', 'radina.IDPre', '=', 'predstava.IDPre')
@@ -330,6 +381,7 @@ class PredstavaController extends Controller
                     ->join('predstava','radina.IDPre' , '=','predstava.IDPre')
                     ->join('ucesnici', 'ucesnici.IDUce', '=', 'radina.IDUce')
                     ->select('ucesnici.*')
+
                     ->where('radina.IDpre', $predstava->IDPre)
                     ->where('radina.Uloga', "Producent")
 
@@ -338,7 +390,7 @@ class PredstavaController extends Controller
 
 
 
-        return view("predstave-detalji")->with('predstava', $predstava)->with('glumci',$glumci)->with('producenti',$producenti);
+        return view("predstave-detalji")->with('predstava', $predstava)->with('glumci',$glumci)->with('producenti',$producenti)->with('projekcije',$projekcije)->with('pozoriste',$pozoriste);
     }
 
     /**

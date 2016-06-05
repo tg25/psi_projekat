@@ -18,6 +18,7 @@ class GlumciController extends Controller
 
 
         $query=DB::table('ucesnici')->select('ucesnici.*')->get();
+        
 
 
         $niz;
@@ -27,6 +28,7 @@ class GlumciController extends Controller
             $nizo[$k]=$que;
             $niz[$k]=(String)$que->Ime." ".(String)$que->Prezime;
             $niz1[$k]=(String)$que->Prezime." ".(String)$que->Ime;
+
             $k=$k+1;
         }
 
@@ -38,7 +40,7 @@ class GlumciController extends Controller
             
             foreach ($query as $h) {
                  echo   '<div class="col-md-4 img-portfolio">
-                        <a href="portfolio-item.html">
+                        <a href="/glumci/'.$h->IDUce.'">
                             <img class="img-responsive img-hover" src="'.$h->Slika.'" alt="">
                         </a>
                      <h3>
@@ -69,7 +71,7 @@ class GlumciController extends Controller
             if (sizeof($hint)>0){
                 foreach ($hint as $h) {
                  echo   '<div class="col-md-4 img-portfolio">
-                        <a href="portfolio-item.html">
+                        <a href="/glumci/'.$h->IDUce.'">
                             <img class="img-responsive img-hover" src="'.$h->Slika.'" alt="">
                         </a>
                      <h3>
@@ -138,7 +140,18 @@ class GlumciController extends Controller
     {
         $glumac=Glumac::find($id);
 
-        return view('glumci-detalji')->with('glumac', $glumac);
+        $predstave = DB::table('radina')
+                    ->join('predstava', 'predstava.IDPre', '=', 'radina.IDPre')
+                    ->join('ucesnici', 'ucesnici.IDUce','=','radina.IDUce')
+                    ->select('predstava.*')
+
+                    ->where('radina.IDUce', $id)
+                    ->distinct()
+                    ->get();
+
+
+
+        return view('glumci-detalji')->with('glumac', $glumac)->with('predstave', $predstave);
     }
 
     /**
