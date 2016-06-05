@@ -88,27 +88,77 @@ function showGlumci(str){
                 document.getElementById("glumci").innerHTML = xmlhttp.responseText;
             }
         };
-        
+
         if(str.length>0)
         xmlhttp.open("GET","glumci/pronadji/"+str,true);
         else
         xmlhttp.open("GET","glumci/pronadji/1",true);
 
         xmlhttp.send();
-    
+
 
 
 
 }
+//editPro
+function editPro(id){
+      if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+      } else {
+          // code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+              document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+          }
+      };
+      xmlhttp.open("GET","repertoar/formaZaIzmene/"+id,true);
+      xmlhttp.send();
+return false;
+}
 
 
+//editGlu
+function editGlu(id){
+      if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+      } else {
+          // code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+              document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+          }
+      };
+      xmlhttp.open("GET","glumci/formaZaIzmene/"+id,true);
+      xmlhttp.send();
+return false;
+}
 
-
+//editPoz
+function editPoz(id){
+      if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+      } else {
+          // code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+              document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+          }
+      };
+      xmlhttp.open("GET","formaZaIzmene/"+id,true);
+      xmlhttp.send();
+return false;
+}
 
  function edit(id){
-
-
-
        if (window.XMLHttpRequest) {
            // code for IE7+, Firefox, Chrome, Opera, Safari
            xmlhttp = new XMLHttpRequest();
@@ -123,22 +173,70 @@ function showGlumci(str){
        };
        xmlhttp.open("GET","predstave/formaZaIzmene/"+id,true);
        xmlhttp.send();
-
-
-
-
-
-
  return false;
-
  }
+//dodajPro
+function dodajPro(str=8){
+      if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+      } else {
+          // code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+              document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+          }
+      };
+      xmlhttp.open("GET","repertoar/formaZaUnos/"+str,true);
+      xmlhttp.send();
+return false;
+}
 
 
+
+
+//dodajGlu
+function dodajGlu(str=8){
+      if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+      } else {
+          // code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+              document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+          }
+      };
+      xmlhttp.open("GET","glumci/formaZaUnos/"+str,true);
+      xmlhttp.send();
+return false;
+}
+
+
+//dodajPoz
+function dodajPoz(str=8){
+      if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+      } else {
+          // code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+              document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+          }
+      };
+      xmlhttp.open("GET","formaZaUnos/"+str,true);
+      xmlhttp.send();
+return false;
+}
 
  function dodaj(str=8){
-
-
-
        if (window.XMLHttpRequest) {
            // code for IE7+, Firefox, Chrome, Opera, Safari
            xmlhttp = new XMLHttpRequest();
@@ -153,12 +251,7 @@ function showGlumci(str){
        };
        xmlhttp.open("GET","predstave/formaZaUnos/"+str,true);
        xmlhttp.send();
-
-
-
-
 return false;
-
  }
 
  function izmeni(str){
@@ -181,7 +274,20 @@ return false;
                document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
            }
        };
-       xmlhttp.open("GET","predstave/svePred/",true);
+       switch(str){
+        case 'Predstave':
+             xmlhttp.open("GET","predstave/svePred/",true);
+             break;
+        case 'Pozorišta':
+            xmlhttp.open("GET","svaPoz/",true);
+            break;
+        case 'Glumci':
+            xmlhttp.open("GET","sviGlumci/",true);
+            break;
+        case 'Repertoar':
+            xmlhttp.open("GET","repertoar/",true);
+            break;
+        }
        xmlhttp.send();
    }
 

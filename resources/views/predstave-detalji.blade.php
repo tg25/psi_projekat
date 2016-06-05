@@ -33,7 +33,7 @@
                 Glumci:
                 @foreach($glumci as $g)
 
-                    {{$g->Ime}} 
+                    {{$g->Ime}}
                     {{$g->Prezime}},
 
                 @endforeach
@@ -41,7 +41,7 @@
                 Produkcija:
                 @foreach($producenti as $pro)
 
-                    {{$pro->Ime}} 
+                    {{$pro->Ime}}
                     {{$pro->Prezime}},
 
                 @endforeach
@@ -65,15 +65,21 @@
               <td align="center"></td>
 
             </tr>
-            @foreach ($projekcije as $pro) 
+            @foreach ($projekcije as $pro)
             <tr>
               <td align="center"><strong>{{$pozoriste->Naziv}}</strong></td>
               <td align="center"><strong>{{$pro->Datum}}</strong></td>
               <td align="center"><strong>{{$pro->Vreme}}</strong></td>
               <td align="center"><strong>{{$pro->Naziv}}</strong></td>
               <td align="center"><strong>{{$pro->Cena}}</strong></td>
-              <td align="center"><a class="btn btn-default" href="/rezervacija?pro={{$pro->IDPro}}" onClick="">Rezervacija</a></td>
-              
+              @if (Auth::guest())
+                <td align="center">
+                  <a href="/logForm/">Login</a>
+                  <a href="/regForm/">Register</a>
+                </td>
+              @else
+                <td align="center"><a class="btn btn-default" href="/rezervacija?pro={{$pro->IDPro}}" onClick="">Rezervacija</a></td>
+              @endif
             </tr>
             @endforeach
 
@@ -111,7 +117,7 @@
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
 
-                
+
                 <hr>
                 @endif
 
@@ -129,7 +135,7 @@
 
                             <img class="media-object" src="https://www.londontheatre1.com/wp-content/uploads/2015/09/favico264.jpg" alt="">
 
-                          
+
 
                         </a>
                         <div class="media-body">
@@ -164,7 +170,7 @@
                             @endif
 
 
-                            
+
 
                         </div>
                     </div>

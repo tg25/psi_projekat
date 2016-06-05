@@ -42,15 +42,11 @@
            <form>
    						Selektovana tabela:</br>
    						<input id="tabela" class="form-control" type="textbox" size="30" readonly></input></br></br>
-   						<div class="radio">
-   						  <label><input type="radio" name="optradio">Izmeni</label>
-   						</div>
-   						<div class="radio">
-   						  <label><input type="radio" name="optradio">Dodaj</label>
-   						</div>
-   						<div class="radio">
-   						  <label><input type="radio" name="optradio">Obriši</label>
-   						</div>
+
+              <a onclick="return dodajPoz('a')" class="btn btn-default">Dodaj pozoriste</a>
+   						<a onclick="return dodaj('a')" class="btn btn-default">Dodaj predstavu</a>
+              <a onclick="return dodajGlu('a')" class="btn btn-default">Dodaj ucesnika</a>
+              <a onclick="return dodajPro('a')" class="btn btn-default">Dodaj projekciju</a>
  					 </form>
          </div>
              </div>

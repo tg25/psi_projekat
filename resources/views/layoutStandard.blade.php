@@ -176,8 +176,8 @@ z-index: 99999;
                     @if (Auth::guest())
                       <!--  <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li> -->
-                        <li><a href="#divModal">Login</a></li>
-                        <li><a href="#divModalRegister">Register</a></li>
+                        <li><a href="/logForm/">Login</a></li>
+                        <li><a href="/regForm/">Register</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -199,7 +199,7 @@ z-index: 99999;
         </div>
         <!-- /.container -->
     </nav>
-
+<!--
                 <div id="divModal" class="windowModal">
                     <div>
                         <a href="#close" title="Close" class="close">X</a>
@@ -257,7 +257,8 @@ z-index: 99999;
                         </form>
                     </div>
                 </div>
-
+              -->
+<!--
                 <div id="divModalRegister" class="windowModal">
                     <div>
                         <a href="#close" title="Close" class="close">X</a>
@@ -333,7 +334,7 @@ z-index: 99999;
                     </div>
                 </div>
 
-
+-->
     <!-- Intro Header -->
 
     <div class="container">
