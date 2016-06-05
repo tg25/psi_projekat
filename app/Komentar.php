@@ -2,8 +2,11 @@
 
 namespace App;
 
+<<<<<<< HEAD
 use DB;
 
+=======
+>>>>>>> origin/master
 use Illuminate\Database\Eloquent\Model;
 
 class Komentar extends Model

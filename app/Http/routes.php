@@ -20,7 +20,11 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/predstave/complete/{q}', 'PredstavaController@complete');
 
+<<<<<<< HEAD
     Route::get('/predstava/{idpre}', 'PredstavaController@show');
+=======
+    Route::get('glumci/pronadji/{q}', 'GlumciController@pronadji');
+>>>>>>> origin/master
 });
 
 

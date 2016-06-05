@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use App\Komentar;
 use App\Predstava;
 use App\User;
@@ -94,4 +95,10 @@ class KomentarController extends Controller
 
       return redirect()->intended("/predstava/{$idpre}");
     }
+=======
+
+class KomentarController extends Controller
+{
+    //
+>>>>>>> origin/master
 }

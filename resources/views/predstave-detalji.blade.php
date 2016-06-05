@@ -29,6 +29,22 @@
         <div class="row">
             <div class="col-md-6">
                 <img class="img-responsive" src="{{$predstava->Slika}}" alt="">
+                Glumci:
+                @foreach($glumci as $g)
+
+                    {{$g->Ime}} 
+                    {{$g->Prezime}},
+
+                @endforeach
+                </br>
+                Produkcija:
+                @foreach($producenti as $pro)
+
+                    {{$pro->Ime}} 
+                    {{$pro->Prezime}},
+
+                @endforeach
+                <p></p>
             </div>
             <div class="col-md-6">
                 <h2>{{$predstava->Naziv}}</h2>
@@ -40,6 +56,7 @@
 
 
 
+<<<<<<< HEAD
          <!-- Blog Comments -->
 
                 <!-- Comments Form -->
@@ -47,6 +64,7 @@
                 <hr>
 
                 @else
+<<<<<<< HEAD
               <?php
                 $id=Auth::user()->id;
                 $name=Auth::user()->name;
@@ -63,6 +81,14 @@
                           <input type="hidden" name="IDPre" value="{{$idpre}}">
 
                         <textarea class="form-control" name="sadrzaj" rows="3"></textarea>
+=======
+                <hr>
+                    <h4>Leave a Comment:</h4>
+                    <div class="form-group">
+                    <form role="form" method="POST" >
+
+                        <textarea class="form-control" rows="3"></textarea>
+>>>>>>> origin/master
                         </br>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
@@ -82,12 +108,17 @@
                      ?>
                     <div class="media">
                         <a class="pull-left" href="#">
+<<<<<<< HEAD
                             <img class="media-object" src="https://www.londontheatre1.com/wp-content/uploads/2015/09/favico264.jpg" alt="">
+=======
+                            <img class="media-object" src="http://placehold.it/64x64" alt="">
+>>>>>>> origin/master
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">{{$kor->name}}
                                 <small>{{$k->created_at}}</small>
                             </h4>
+<<<<<<< HEAD
                             <h5 class="pull-right">
                               @if(!Auth::guest())
                                 @if($kor->id!=Auth::user()->id)
@@ -114,11 +145,20 @@
                             <h6 style="color:red">Broj prijava: &nbsp;&nbsp;&nbsp; {{$k->Prijava}}</h6>
                             @endif
 
+=======
+                            {{$k->Sadrzaj}}
+>>>>>>> origin/master
                         </div>
                     </div>
                   @endif
                 @endforeach
 
+<<<<<<< HEAD
+=======
+=======
+         
+>>>>>>> origin/master
+>>>>>>> origin/master
 </div>
 
 
