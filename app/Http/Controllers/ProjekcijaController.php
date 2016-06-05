@@ -198,4 +198,10 @@ class ProjekcijaController extends Controller
   }
 
 
+  public function SvePrikaz(){
+    return view('repertoar');
+  }
+
+
+
 }

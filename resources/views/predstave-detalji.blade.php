@@ -72,19 +72,16 @@
               <td align="center"><strong>{{$pro->Vreme}}</strong></td>
               <td align="center"><strong>{{$pro->Naziv}}</strong></td>
               <td align="center"><strong>{{$pro->Cena}}</strong></td>
-<<<<<<< HEAD
-              <td align="center"><a class="btn btn-default" href="/rezervacija?pro={{$pro->IDPro}}&pred={{$predstava->Naziv}}&poz={{$pozoriste->Naziv}}" onClick="">Rezervacija</a></td>
-              
-=======
+
               @if (Auth::guest())
                 <td align="center">
                   <a href="/logForm/">Login</a>
                   <a href="/regForm/">Register</a>
                 </td>
               @else
-                <td align="center"><a class="btn btn-default" href="/rezervacija?pro={{$pro->IDPro}}" onClick="">Rezervacija</a></td>
+                <td align="center"><a class="btn btn-default" href="/rezervacija?pro={{$pro->IDPro}}&pred={{$predstava->Naziv}}&poz={{$pozoriste->Naziv}}" onClick="">Rezervacija</a></td>
               @endif
->>>>>>> origin/master
+
             </tr>
             @endforeach
 

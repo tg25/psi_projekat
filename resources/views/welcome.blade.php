@@ -30,7 +30,7 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Rezervišite karte</h2>
                     <p>Možete da jednostavno pregledate i pretražujete repertoar za različita pozorišta. Rezervišite i kupite karte sa samo par klikova mišem.</p>
-                    <a href="" class="btn btn-default btn-lg">Repertoar</a>
+                    <a href="/repertoar/svePrikaz" class="btn btn-default btn-lg">Repertoar</a>
                 </div>
             </div>
         </div>

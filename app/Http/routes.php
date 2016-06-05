@@ -68,7 +68,7 @@ Route::resource("glumci", "GlumciController");
 Route::get('predstave/svePred/', 'PredstavaController@svePred');
 //ubcaeno pre da ga show ne bi zamaskirao
 Route::get('vesti/sveVesti/', 'VestiController@sveVesti');
-
+Route::get('repertoar/svePrikaz/', 'ProjekcijaController@svePrikaz');
 
 Route::get('/vesti/formaZaUnos/{p}','VestiController@formaZaUnos');
 Route::get('/vesti/formaZaIzmene/{p}','VestiController@formaZaIzmene');

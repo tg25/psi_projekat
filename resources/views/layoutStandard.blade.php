@@ -156,7 +156,7 @@ z-index: 99999;
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="/">Repertoar</a>
+                        <a class="page-scroll" href="/repertoar/svePrikaz">Repertoar</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="/vesti/">Vesti</a>
@@ -171,7 +171,7 @@ z-index: 99999;
                         <a class="page-scroll" href="/glumci">Glumci</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">O nama</a>
+                        <a class="page-scroll" href="/#contact">O nama</a>
                     </li>
                     @if (Auth::guest())
                       <!--  <li><a href="{{ url('/login') }}">Login</a></li>
