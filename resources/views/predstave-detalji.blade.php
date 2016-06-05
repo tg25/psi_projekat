@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    
+
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="index.html">Home</a>
@@ -82,7 +82,54 @@
 
 
 
+<<<<<<< HEAD
+         <!-- Blog Comments -->
+
+                <!-- Comments Form -->
+                @if (Auth::guest())
+                <hr>
+
+                @else
+                <hr>
+                    <h4>Leave a Comment:</h4>
+                    <div class="form-group">
+                    <form role="form" method="POST" >
+
+                        <textarea class="form-control" rows="3"></textarea>
+                        </br>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    </div>
+
+                <hr>
+                @endif
+
+                <!-- Posted Comments -->
+
+                <!-- Comment -->
+
+                @foreach($komentari->reverse() as $k)
+                  @if($k->IDPre==$predstava->IDPre)
+                    <?php
+                      $kor = DB::table('users')->where('id', $k->IDReg)->first();
+                     ?>
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="http://placehold.it/64x64" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{$kor->name}}
+                                <small>{{$k->created_at}}</small>
+                            </h4>
+                            {{$k->Sadrzaj}}
+                        </div>
+                    </div>
+                  @endif
+                @endforeach
+
+=======
          
+>>>>>>> origin/master
 </div>
 
 

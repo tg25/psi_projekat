@@ -7,9 +7,16 @@ use DB;
 use App\Http\Requests;
 use App\Predstava;
 use App\Pozoriste;
+<<<<<<< HEAD
+use App\Komentar;
+=======
 use App\Glumac;
 use App\RadiNa;
+<<<<<<< HEAD
 use App\Projekcije;
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 use Illuminate\Support\Facades\Input;
 
 
@@ -101,11 +108,6 @@ class PredstavaController extends Controller
       }
 
 
-
-
-
-
-
     public function prikazi(Request $request){
 
         $Naziv=$request->Naziv;
@@ -118,6 +120,7 @@ class PredstavaController extends Controller
         echo $Naziv;
 
         return view("proba")->with("naziv", $izbor);
+<<<<<<< HEAD
 
 
 }
@@ -176,13 +179,9 @@ class PredstavaController extends Controller
 
     
 
+=======
+>>>>>>> origin/master
     }
-
-
-
-
-
-    
 
      public function pretraga($q)
 
@@ -351,6 +350,11 @@ class PredstavaController extends Controller
      */
     public function show($id)
     {
+<<<<<<< HEAD
+        $komentari=Komentar::all();
+         $predstava=Predstava::find($id);
+        return view("predstave-detalji")->with('predstava', $predstava)->with('komentari',$komentari);
+=======
         $predstava=Predstava::find($id);
         $projekcije=DB::table('projekcija')
                         ->orderBy('Datum', 'asc')
@@ -390,7 +394,12 @@ class PredstavaController extends Controller
 
 
 
+<<<<<<< HEAD
         return view("predstave-detalji")->with('predstava', $predstava)->with('glumci',$glumci)->with('producenti',$producenti)->with('projekcije',$projekcije)->with('pozoriste',$pozoriste);
+=======
+        return view("predstave-detalji")->with('predstava', $predstava)->with('glumci',$glumci)->with('producenti',$producenti);
+>>>>>>> origin/master
+>>>>>>> origin/master
     }
 
     /**
