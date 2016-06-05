@@ -7,20 +7,16 @@ use DB;
 use App\Http\Requests;
 use App\Predstava;
 use App\Pozoriste;
-<<<<<<< HEAD
+
 use App\Komentar;
-=======
-<<<<<<< HEAD
-use App\Komentar;
-=======
+
+
+
 use App\Glumac;
 use App\RadiNa;
-<<<<<<< HEAD
+
 use App\Projekcije;
-=======
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
+
 use Illuminate\Support\Facades\Input;
 
 
@@ -124,7 +120,7 @@ class PredstavaController extends Controller
         echo $Naziv;
 
         return view("proba")->with("naziv", $izbor);
-<<<<<<< HEAD
+
 
 
 }
@@ -183,8 +179,7 @@ class PredstavaController extends Controller
 
     
 
-=======
->>>>>>> origin/master
+
     }
 
      public function pretraga($q)
@@ -248,7 +243,7 @@ class PredstavaController extends Controller
                 <h3>'.$p->Naziv.'</h3>
                 <p>'.$poz->Naziv.'</p>
                 <p>'.$p->Detaljnije.'</p>
-                <a class="btn btn-default" href="/vesti/'.$p->IDPre.'">Detaljnije</i></a>
+                <a class="btn btn-default" href="/predstave/'.$p->IDPre.'">Detaljnije</i></a>
             </div>
         </div>
 
@@ -277,7 +272,7 @@ class PredstavaController extends Controller
                 <h3>'.$p->Naziv.'</h3>
                 <p>'.$poz->Naziv.'</p>
                 <p>'.$p->Detaljnije.'</p>
-                <a class="btn btn-default" href="/vesti/'.$p->IDPre.'">Detaljnije</i></a>
+                <a class="btn btn-default" href="/predstave/'.$p->IDPre.'">Detaljnije</i></a>
             </div>
         </div>
 
@@ -354,34 +349,32 @@ class PredstavaController extends Controller
      */
     public function show($id)
     {
-<<<<<<< HEAD
+
         $komentari=Komentar::all();
-         $predstava=Predstava::find($id);
-        return view("predstave-detalji")->with('predstava', $predstava)->with('komentari',$komentari);
-=======
-<<<<<<< HEAD
-        $komentari=Komentar::all();
-         $predstava=Predstava::find($id);
-        return view("predstave-detalji")->with('predstava', $predstava)->with('komentari',$komentari);
-=======
+         
+        
+
         $predstava=Predstava::find($id);
         $projekcije=DB::table('projekcija')
                         ->orderBy('Datum', 'asc')
                         ->orderBy('Vreme', 'asc')
                         ->join('predstava', 'predstava.IDPre','=','projekcija.IDPre')
                         ->join('sala', 'sala.IDSala','=', 'projekcija.IDSal')
-                        
                         ->select('projekcija.*', 'sala.Naziv')
-
                         ->where('projekcija.IDPre', $id)
-
                         ->get();
+        
+
+        
 
         $pozoriste=DB::table('predstava')
                       ->join('pozoriste','pozoriste.IDPoz','=','predstava.IDPoz')
                       ->select('pozoriste.*')
                       ->where('predstava.IDPre', $id)
                       ->first();
+
+
+        
 
         $glumci=DB::table('radina')
                     ->join('predstava', 'radina.IDPre', '=', 'predstava.IDPre')
@@ -400,15 +393,12 @@ class PredstavaController extends Controller
 
                     ->get();
 
+         
 
 
+        return view("predstave-detalji")->with('predstava', $predstava)->with('glumci',$glumci)->with('producenti',$producenti)->with('projekcije',$projekcije)->with('pozoriste',$pozoriste)->with('komentari',$komentari);
 
-<<<<<<< HEAD
-        return view("predstave-detalji")->with('predstava', $predstava)->with('glumci',$glumci)->with('producenti',$producenti)->with('projekcije',$projekcije)->with('pozoriste',$pozoriste);
-=======
-        return view("predstave-detalji")->with('predstava', $predstava)->with('glumci',$glumci)->with('producenti',$producenti);
->>>>>>> origin/master
->>>>>>> origin/master
+
     }
 
     /**

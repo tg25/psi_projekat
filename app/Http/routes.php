@@ -20,11 +20,11 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/predstave/complete/{q}', 'PredstavaController@complete');
 
-<<<<<<< HEAD
+
     Route::get('/predstava/{idpre}', 'PredstavaController@show');
-=======
+
     Route::get('glumci/pronadji/{q}', 'GlumciController@pronadji');
->>>>>>> origin/master
+
 });
 
 
@@ -73,6 +73,8 @@ Route::resource("korisnik", "KorisnikController");
 Route::resource("vesti", "VestiController");
 
 Route::resource("pozorista", "PozoristeController");
+
+Route::resource("rezervacija", "RezervacijaController");
 
 Route::resource("predstave", "PredstavaController");
 

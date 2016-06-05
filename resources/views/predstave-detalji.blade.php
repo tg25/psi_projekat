@@ -72,7 +72,7 @@
               <td align="center"><strong>{{$pro->Vreme}}</strong></td>
               <td align="center"><strong>{{$pro->Naziv}}</strong></td>
               <td align="center"><strong>{{$pro->Cena}}</strong></td>
-              <td align="center"><a class="btn btn-default" href="" onClick="return dodaj()">Rezervacija</a></td>
+              <td align="center"><a class="btn btn-default" href="/rezervacija?pro={{$pro->IDPro}}" onClick="">Rezervacija</a></td>
               
             </tr>
             @endforeach
@@ -82,7 +82,7 @@
 
 
 
-<<<<<<< HEAD
+
          <!-- Blog Comments -->
 
                 <!-- Comments Form -->
@@ -90,7 +90,7 @@
                 <hr>
 
                 @else
-<<<<<<< HEAD
+
               <?php
                 $id=Auth::user()->id;
                 $name=Auth::user()->name;
@@ -107,19 +107,11 @@
                           <input type="hidden" name="IDPre" value="{{$idpre}}">
 
                         <textarea class="form-control" name="sadrzaj" rows="3"></textarea>
-=======
-                <hr>
-                    <h4>Leave a Comment:</h4>
-                    <div class="form-group">
-                    <form role="form" method="POST" >
-
-                        <textarea class="form-control" rows="3"></textarea>
->>>>>>> origin/master
                         </br>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
-                    </div>
 
+                
                 <hr>
                 @endif
 
@@ -134,17 +126,17 @@
                      ?>
                     <div class="media">
                         <a class="pull-left" href="#">
-<<<<<<< HEAD
+
                             <img class="media-object" src="https://www.londontheatre1.com/wp-content/uploads/2015/09/favico264.jpg" alt="">
-=======
-                            <img class="media-object" src="http://placehold.it/64x64" alt="">
->>>>>>> origin/master
+
+                          
+
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">{{$kor->name}}
                                 <small>{{$k->created_at}}</small>
                             </h4>
-<<<<<<< HEAD
+
                             <h5 class="pull-right">
                               @if(!Auth::guest())
                                 @if($kor->id!=Auth::user()->id)
@@ -171,20 +163,16 @@
                             <h6 style="color:red">Broj prijava: &nbsp;&nbsp;&nbsp; {{$k->Prijava}}</h6>
                             @endif
 
-=======
-                            {{$k->Sadrzaj}}
->>>>>>> origin/master
+
+                            
+
                         </div>
                     </div>
                   @endif
                 @endforeach
 
-<<<<<<< HEAD
-=======
-=======
-         
->>>>>>> origin/master
->>>>>>> origin/master
+
+
 </div>
 
 
